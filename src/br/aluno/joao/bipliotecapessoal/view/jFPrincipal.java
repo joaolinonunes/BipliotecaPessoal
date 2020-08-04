@@ -31,7 +31,11 @@ public class jFPrincipal extends javax.swing.JFrame {
         jPrincipal = new javax.swing.JMenuBar();
         jMCadasdros = new javax.swing.JMenu();
         jmiCategoria = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiTipo = new javax.swing.JMenuItem();
+        jmiEmprestimo = new javax.swing.JMenuItem();
+        jmiObra = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jmiSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,8 +56,18 @@ public class jFPrincipal extends javax.swing.JFrame {
         jmiCategoria.setText("Categoria");
         jMCadasdros.add(jmiCategoria);
 
-        jMenuItem1.setText("jMenuItem1");
-        jMCadasdros.add(jMenuItem1);
+        jmiTipo.setText("Tipo");
+        jMCadasdros.add(jmiTipo);
+
+        jmiEmprestimo.setText("Emprestimo");
+        jMCadasdros.add(jmiEmprestimo);
+
+        jmiObra.setText("Obra");
+        jMCadasdros.add(jmiObra);
+        jMCadasdros.add(jSeparator1);
+
+        jmiSair.setText("Sair");
+        jMCadasdros.add(jmiSair);
 
         jPrincipal.add(jMCadasdros);
 
@@ -114,9 +128,13 @@ public class jFPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMCadasdros;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar jPrincipal;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCategoria;
+    private javax.swing.JMenuItem jmiEmprestimo;
+    private javax.swing.JMenuItem jmiObra;
+    private javax.swing.JMenuItem jmiSair;
+    private javax.swing.JMenuItem jmiTipo;
     // End of variables declaration//GEN-END:variables
 }
