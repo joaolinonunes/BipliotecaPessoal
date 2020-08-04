@@ -5,16 +5,19 @@
  */
 package br.aluno.joao.bipliotecapessoal.view;
 
+import br.aluno.joao.bipliotecapessoal.model.CategoriaModel;
+
 /**
  *
  * @author João
  */
 public class jiFCategoria extends javax.swing.JInternalFrame {
-
+        CategoriaModel obj;
     /**
      * Creates new form jiFCategoria
      */
     public jiFCategoria() {
+        obj = new CategoriaModel();
         initComponents();
     }
 
@@ -138,4 +141,13 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLId2;
     private javax.swing.JTextField jtFDescricao;
     // End of variables declaration//GEN-END:variables
+private boolean preencherObjeto() throws Exception{
+    obj.setId(Integer.parseInt(jLId2.getText()));
+    obj.setDescricao(jtFDescricao.getText());
+    return true;
+
 }
+
+
+}
+
