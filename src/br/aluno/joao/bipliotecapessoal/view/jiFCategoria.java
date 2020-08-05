@@ -75,6 +75,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBCancelar.setText("Cancelar");
         jBCancelar.setEnabled(false);
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
 
         jBExcluir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBExcluir.setText("Excluir");
@@ -137,7 +142,18 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
     private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
         br.aluno.joao.bipliotecapessoal.extras.Formularios.limparCampos(this);
         br.aluno.joao.bipliotecapessoal.extras.Formularios.tratarCampos(this, true);
+        jBNovo.setEnabled(false);
+        jBSalvar.setEnabled(true);
+        jBCancelar.setEnabled(true);
     }//GEN-LAST:event_jBNovoActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+       br.aluno.joao.bipliotecapessoal.extras.Formularios.limparCampos(this);
+        br.aluno.joao.bipliotecapessoal.extras.Formularios.tratarCampos(this, true);
+        jBNovo.setEnabled(true);
+        jBSalvar.setEnabled(false);
+        jBCancelar.setEnabled(false);
+    }//GEN-LAST:event_jBCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

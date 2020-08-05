@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  */
 public class Formularios {
     public static void limparCampos(JInternalFrame form){
-        for(Component c: form.getComponents()){
+        for(Component c: form.getContentPane().getComponents()){
             if(c instanceof JTextField){
                 ((JTextField) c).setText(null);
             }
@@ -24,7 +24,7 @@ public class Formularios {
     }
     
      public static void tratarCampos(JInternalFrame form,boolean t){
-        for(Component c: form.getComponents()){
+        for(Component c: form.getContentPane().getComponents()){
             if(c instanceof JTextField){
                 ((JTextField) c).setEnabled(t);
             }
