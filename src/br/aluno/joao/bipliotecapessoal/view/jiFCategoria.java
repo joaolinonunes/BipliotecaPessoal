@@ -58,6 +58,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 
         jBNovo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBNovo.setText("Novo");
+        jBNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNovoActionPerformed(evt);
+            }
+        });
 
         jBSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jBSalvar.setText("Salvar");
@@ -128,6 +133,10 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
+        br.aluno.joao.bipliotecapessoal.extras.Formularios.limparCampos(this);
+    }//GEN-LAST:event_jBNovoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
