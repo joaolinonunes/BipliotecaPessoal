@@ -149,10 +149,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
        br.aluno.joao.bipliotecapessoal.extras.Formularios.limparCampos(this);
-        br.aluno.joao.bipliotecapessoal.extras.Formularios.tratarCampos(this, true);
+        br.aluno.joao.bipliotecapessoal.extras.Formularios.tratarCampos(this, false);
         jBNovo.setEnabled(true);
         jBSalvar.setEnabled(false);
         jBCancelar.setEnabled(false);
+       // jtFDescricao.setEnabled(false);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
 
