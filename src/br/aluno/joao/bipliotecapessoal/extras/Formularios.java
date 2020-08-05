@@ -5,7 +5,11 @@
  */
 package br.aluno.joao.bipliotecapessoal.extras;
 
+import br.aluno.joao.bipliotecapessoal.model.TipoModel;
 import java.awt.Component;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
@@ -31,7 +35,7 @@ public class Formularios {
         }
     
     }
-    
+  
     
     
     
