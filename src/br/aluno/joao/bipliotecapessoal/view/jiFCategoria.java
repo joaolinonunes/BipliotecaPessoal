@@ -6,6 +6,7 @@
 package br.aluno.joao.bipliotecapessoal.view;
 
 import br.aluno.joao.bipliotecapessoal.model.CategoriaModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,6 +73,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jBSalvar.setText("Salvar");
         jBSalvar.setEnabled(false);
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         jBEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBEditar.setText("Editar");
@@ -212,6 +218,17 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
        // jtFDescricao.setEnabled(false);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+        try {
+            if(validarCampos()){
+                if(preencherObjeto()){
+                
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jBSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
@@ -235,7 +252,13 @@ private boolean preencherObjeto() throws Exception{
     return true;
 
 }
-
+private boolean validarCampos() throws Exception{
+    if(jtFDescricao.getText().trim().length()<3){
+        JOptionPane.showMessageDialog(this,"Digite no minimo 3 caracteres");
+        return false;
+    }
+  return true;  
+}
 
 }
 
