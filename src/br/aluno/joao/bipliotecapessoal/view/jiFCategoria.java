@@ -136,6 +136,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 
     private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
         br.aluno.joao.bipliotecapessoal.extras.Formularios.limparCampos(this);
+        br.aluno.joao.bipliotecapessoal.extras.Formularios.tratarCampos(this, true);
     }//GEN-LAST:event_jBNovoActionPerformed
 
 

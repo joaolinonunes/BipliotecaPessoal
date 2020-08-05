@@ -54,6 +54,11 @@ public class jFPrincipal extends javax.swing.JFrame {
         jMCadasdros.setText("Cadastro");
 
         jmiCategoria.setText("Categoria");
+        jmiCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCategoriaActionPerformed(evt);
+            }
+        });
         jMCadasdros.add(jmiCategoria);
 
         jmiTipo.setText("Tipo");
@@ -89,6 +94,12 @@ public class jFPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCategoriaActionPerformed
+        jiFCategoria janela = new jiFCategoria();
+        jdpPrincipal.add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
