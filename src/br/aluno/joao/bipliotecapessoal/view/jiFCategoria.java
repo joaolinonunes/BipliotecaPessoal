@@ -5,7 +5,10 @@
  */
 package br.aluno.joao.bipliotecapessoal.view;
 
+import br.aluno.joao.bipliotecapessoal.data.CategoriaData;
 import br.aluno.joao.bipliotecapessoal.model.CategoriaModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +17,19 @@ import javax.swing.JOptionPane;
  */
 public class jiFCategoria extends javax.swing.JInternalFrame {
         CategoriaModel obj;
+        CategoriaData DAO;
     /**
      * Creates new form jiFCategoria
      */
     public jiFCategoria() {
-        obj = new CategoriaModel();
         initComponents();
+        
+            try {
+                obj = new CategoriaModel();
+                DAO = new CategoriaData();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,"Erro ao conectar: "+e.getMessage());
+            }
     }
 
     /**
@@ -215,17 +225,23 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBNovo.setEnabled(true);
         jBSalvar.setEnabled(false);
         jBCancelar.setEnabled(false);
-       // jtFDescricao.setEnabled(false);
+       
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         try {
             if(validarCampos()){
                 if(preencherObjeto()){
-                
+                    if(DAO.incluir(obj)){
+                        JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
+                        jBCancelarActionPerformed(evt);
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Erro ao salvar");
+                    }
                 }
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Ocorreu um erro: "+e.getMessage());
         }
     }//GEN-LAST:event_jBSalvarActionPerformed
 

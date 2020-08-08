@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class TipoData {
     
-     public ArrayList<TipoModel> pesquisar(String texto) throws Exception{
+  /*   public ArrayList<TipoModel> pesquisar(String texto) throws Exception{
         ArrayList<TipoModel> dados = new ArrayList<>();
         String sql="Select * from Tipos where descricao like '"+texto+"%'";
         PreparedStatement ps = getConexao().prepareStatement(sql);
@@ -27,5 +27,5 @@ public class TipoData {
         }  
         return dados;
     } 
-    
+    */
 }
