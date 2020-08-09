@@ -21,7 +21,7 @@ public class CategoriaData extends Conexao{
         return ps.executeUpdate()>0;
     }
     
-     public boolean editatr(CategoriaModel obj) throws Exception{
+     public boolean editar(CategoriaModel obj) throws Exception{
         String sql = "update CATEGORIA set descricao =? where id =?";
         PreparedStatement ps = getConexao().prepareStatement(sql);
         ps.setString(1,obj.getDescricao());

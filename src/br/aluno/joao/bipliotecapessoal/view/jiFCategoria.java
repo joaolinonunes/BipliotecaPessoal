@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class jiFCategoria extends javax.swing.JInternalFrame {
         CategoriaModel obj;
-        CategoriaData DAO;
+       CategoriaData DAO;
     /**
      * Creates new form jiFCategoria
      */
     public jiFCategoria() {
         initComponents();
-        
-            try {
+         
+           try {
                 obj = new CategoriaModel();
                 DAO = new CategoriaData();
             } catch (Exception e) {
@@ -233,11 +233,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
             if(validarCampos()){
                 if(preencherObjeto()){
                     if(DAO.incluir(obj)){
-                        JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
-                        jBCancelarActionPerformed(evt);
+                       JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
+                      //  jBCancelarActionPerformed(evt);
                     }else{
-                        JOptionPane.showMessageDialog(this,"Erro ao salvar");
-                    }
+                       JOptionPane.showMessageDialog(this,"Erro ao salvar");
+                         }
                 }
             }
         } catch (Exception e) {
