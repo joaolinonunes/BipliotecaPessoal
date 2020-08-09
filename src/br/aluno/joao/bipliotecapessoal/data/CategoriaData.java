@@ -7,6 +7,8 @@ package br.aluno.joao.bipliotecapessoal.data;
 
 import br.aluno.joao.bipliotecapessoal.model.CategoriaModel;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,4 +37,16 @@ public class CategoriaData extends Conexao{
         ps.setInt(1,id);
         return ps.executeUpdate()>0;
     }
+     
+      public ArrayList<CategoriaModel> pesquisar(String texto) throws Exception{
+        ArrayList<CategoriaModel> dados = new ArrayList<>();
+        String sql="Select * from CATEGORIA where descricao ilike '"+texto+"%'";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+        CategoriaModel obj = new CategoriaModel(rs.getInt("id"),rs.getString("descricao"));
+        dados.add(obj);
+        }  
+        return dados;
+    } 
 }

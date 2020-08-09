@@ -7,9 +7,11 @@ package br.aluno.joao.bipliotecapessoal.view;
 
 import br.aluno.joao.bipliotecapessoal.data.CategoriaData;
 import br.aluno.joao.bipliotecapessoal.model.CategoriaModel;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +20,8 @@ import javax.swing.JOptionPane;
 public class jiFCategoria extends javax.swing.JInternalFrame {
         CategoriaModel obj;
        CategoriaData DAO;
+       ArrayList<CategoriaModel> lista;
+   
     /**
      * Creates new form jiFCategoria
      */
@@ -27,6 +31,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
            try {
                 obj = new CategoriaModel();
                 DAO = new CategoriaData();
+                lista = new ArrayList<>();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this,"Erro ao conectar: "+e.getMessage());
             }
@@ -50,11 +55,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBEditar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
+        jLPesquisar = new javax.swing.JLabel();
+        jtFPesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTabelaCategoria = new javax.swing.JTable();
-        jtFPesquisa = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jLPesquisar = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -106,6 +111,15 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBExcluir.setText("Excluir");
         jBExcluir.setEnabled(false);
 
+        jLPesquisar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLPesquisar.setText("Pesquisar");
+
+        jtFPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtFPesquisaKeyReleased(evt);
+            }
+        });
+
         jtTabelaCategoria.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jtTabelaCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtTabelaCategoria.setModel(new javax.swing.table.DefaultTableModel(
@@ -134,9 +148,6 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtTabelaCategoria);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jLPesquisar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLPesquisar.setText("Pesquisar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +245,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
                 if(preencherObjeto()){
                     if(DAO.incluir(obj)){
                        JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
-                      //  jBCancelarActionPerformed(evt);
+                        jBCancelarActionPerformed(evt);
                     }else{
                        JOptionPane.showMessageDialog(this,"Erro ao salvar");
                          }
@@ -244,6 +255,25 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,"Ocorreu um erro: "+e.getMessage());
         }
     }//GEN-LAST:event_jBSalvarActionPerformed
+
+    private void jtFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFPesquisaKeyReleased
+    try {
+            if(jtFPesquisa.getText().trim().length()>1){
+            lista = DAO.pesquisar(jtFPesquisa.getText());
+            DefaultTableModel mp = (DefaultTableModel)jtTabelaCategoria.getModel();
+            mp.setNumRows(0);//limpar a tabela
+            for(CategoriaModel t: lista){
+                mp.addRow(new String[]{""+t.getId(),t.getDescricao()});
+            }
+            }else if (jtFPesquisa.getText().trim().length()==0){
+              DefaultTableModel mp = (DefaultTableModel)jtTabelaCategoria.getModel();
+              mp.setNumRows(0);}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: "+e.getMessage());
+        }
+    
+
+    }//GEN-LAST:event_jtFPesquisaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
