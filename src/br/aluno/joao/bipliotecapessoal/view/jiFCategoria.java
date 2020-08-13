@@ -21,6 +21,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         CategoriaModel obj;
        CategoriaData DAO;
        ArrayList<CategoriaModel> lista;
+    private int acao = 0;
    
     /**
      * Creates new form jiFCategoria
@@ -97,6 +98,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBEditar.setText("Editar");
         jBEditar.setEnabled(false);
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEditarActionPerformed(evt);
+            }
+        });
 
         jBCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBCancelar.setText("Cancelar");
@@ -110,6 +116,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         jBExcluir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBExcluir.setText("Excluir");
         jBExcluir.setEnabled(false);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
         jLPesquisar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLPesquisar.setText("Pesquisar");
@@ -143,6 +154,11 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jtTabelaCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTabelaCategoriaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jtTabelaCategoria);
@@ -243,12 +259,25 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
         try {
             if(validarCampos()){
                 if(preencherObjeto()){
+                  if(acao == 1){  
                     if(DAO.incluir(obj)){
                        JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
                         jBCancelarActionPerformed(evt);
                     }else{
                        JOptionPane.showMessageDialog(this,"Erro ao salvar");
                          }
+                    }
+                  if(acao == 2){
+                     if(DAO.editar(obj)){
+                    JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
+                        jBCancelarActionPerformed(evt);
+                        DefaultTableModel mp = (DefaultTableModel)jtTabelaCategoria.getModel();
+                        mp.setNumRows(0);
+                    }else{
+                       JOptionPane.showMessageDialog(this,"Erro ao salvar");
+                         }
+                  
+                  }  
                 }
             }
         } catch (Exception e) {
@@ -258,7 +287,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 
     private void jtFPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFPesquisaKeyReleased
     try {
-            if(jtFPesquisa.getText().trim().length()>1){
+            if(jtFPesquisa.getText().trim().length()>=1){
             lista = DAO.pesquisar(jtFPesquisa.getText());
             DefaultTableModel mp = (DefaultTableModel)jtTabelaCategoria.getModel();
             mp.setNumRows(0);//limpar a tabela
@@ -274,6 +303,48 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
     
 
     }//GEN-LAST:event_jtFPesquisaKeyReleased
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+             try {
+            if(DAO.excluir(Integer.parseInt(jLId2.getText()))){
+                JOptionPane.showMessageDialog(this, "Excluído com sucesso");
+                jBCancelarActionPerformed(evt);
+                jtFPesquisa.setEnabled(true);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao excluir o registro: "+e.getMessage());
+        }
+    
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        br.aluno.joao.bipliotecapessoal.extras.Formularios.tratarCampos(this,true);
+        acao = 2; //editar (update)
+        jBSalvar.setEnabled(true);
+        jBCancelar.setEnabled(true);
+        jBNovo.setEnabled(false);
+        jBExcluir.setEnabled(false);
+        jBEditar.setEnabled(false);
+    
+    }//GEN-LAST:event_jBEditarActionPerformed
+
+    private void jtTabelaCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTabelaCategoriaMouseClicked
+         try {
+            int linha = jtTabelaCategoria.getSelectedRow();
+            if(linha>-1){
+                jLId2.setText(jtTabelaCategoria.getValueAt(linha, 0).toString());
+                jtFDescricao.setText(jtTabelaCategoria.getValueAt(linha, 1).toString());
+                jBEditar.setEnabled(true);
+                jBExcluir.setEnabled(true);
+            } else {
+                jBEditar.setEnabled(false);
+                jBExcluir.setEnabled(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao selecionar o registro: "+e.getMessage());
+        }
+     
+    }//GEN-LAST:event_jtTabelaCategoriaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
