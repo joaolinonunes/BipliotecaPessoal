@@ -32,7 +32,7 @@ public class CategoriaData extends Conexao{
     }
     
      public boolean excluir(int id) throws Exception{
-        String sql = "delete from CATEGORIA where id =?)";
+        String sql = "delete from CATEGORIA where id =?";
         PreparedStatement ps = getConexao().prepareStatement(sql);
         ps.setInt(1,id);
         return ps.executeUpdate()>0;
