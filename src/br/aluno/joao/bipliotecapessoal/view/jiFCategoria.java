@@ -270,7 +270,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
                     }
                   if(acao == 2){
                      if(DAO.editar(obj)){
-                    JOptionPane.showMessageDialog(this,"Salvo com sucesso!");
+                    JOptionPane.showMessageDialog(this,"Editado com sucesso!");
                         jBCancelarActionPerformed(evt);
                         DefaultTableModel mp = (DefaultTableModel)jtTabelaCategoria.getModel();
                         mp.setNumRows(0);
