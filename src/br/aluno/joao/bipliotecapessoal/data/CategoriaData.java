@@ -29,7 +29,7 @@ public class CategoriaData extends Conexao{
         ps.setString(1,obj.getDescricao());
         ps.setInt(2,obj.getId());
         return ps.executeUpdate()>0;
-    }
+     }
     
      public boolean excluir(int id) throws Exception{
         String sql = "delete from CATEGORIA where id =?";
@@ -49,4 +49,15 @@ public class CategoriaData extends Conexao{
         }  
         return dados;
     } 
+        public ArrayList<CategoriaModel> carregarCombo() throws Exception{
+            ArrayList<CategoriaModel> dados = new ArrayList<>();
+            String sql="Select * from Categorias order by descricao";
+            PreparedStatement ps = getConexao().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                CategoriaModel obj = new CategoriaModel(rs.getInt("id"),rs.getString("descricao"));
+                dados.add(obj);
+            }  
+            return dados;
+        }  
 }

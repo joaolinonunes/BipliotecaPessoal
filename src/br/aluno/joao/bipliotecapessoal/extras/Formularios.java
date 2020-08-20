@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JInternalFrame;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,7 +37,10 @@ public class Formularios {
         }
     
     }
-  
+  public static void limparTabela(JTable tabela)  {
+        DefaultTableModel mp = (DefaultTableModel)tabela.getModel();
+            mp.setNumRows(0);
+    }
     
     
     

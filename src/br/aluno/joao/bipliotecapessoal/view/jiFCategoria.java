@@ -367,6 +367,7 @@ public class jiFCategoria extends javax.swing.JInternalFrame {
 private boolean preencherObjeto() throws Exception{
     obj.setId(Integer.parseInt(jLId2.getText()));
     obj.setDescricao(jtFDescricao.getText());
+    
     return true;
 
 }
