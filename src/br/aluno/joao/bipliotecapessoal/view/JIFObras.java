@@ -351,12 +351,17 @@ public class JIFObras extends javax.swing.JInternalFrame {
     ArrayList<ObraModel> lista = new ArrayList<>();
     private void jtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyReleased
     try {
+        if(jtPesquisa.getText().trim().length()>=1){
         lista = DAO.pesquisar(jtPesquisa.getText());
         DefaultTableModel mp = (DefaultTableModel) jtbDados.getModel();
         mp.setNumRows(0);
         for(ObraModel ob: lista){
             mp.addRow(new String[]{""+ob.getId(),ob.getDescricao(),ob.getAutor(), ""+ob.getAno()});//linha de dados
             //mp.addRow(new String[]{String.valueOf(ob.getId()),ob.getDescricao(),ob.getAutor(), String.valueOf(ob.getAno())});//linha de dados
+        }
+        }else if (jtPesquisa.getText().trim().length()==0){
+            DefaultTableModel mp = (DefaultTableModel) jtbDados.getModel();
+        mp.setNumRows(0);
         }
     } catch (Exception e) {
        JOptionPane.showMessageDialog(this, "Ocorreu um erro: "+e.getMessage());
