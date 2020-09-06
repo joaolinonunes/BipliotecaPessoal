@@ -177,6 +177,11 @@ public class JIFObras extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtbDados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbDadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtbDados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -368,6 +373,28 @@ public class JIFObras extends javax.swing.JInternalFrame {
     }
         
     }//GEN-LAST:event_jtPesquisaKeyReleased
+
+    private void jtbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbDadosMouseClicked
+       try {
+            int linha = jtbDados.getSelectedRow();
+            jlId2.setText(""+lista.get(linha).getId());
+            jtDescricao.setText(lista.get(linha).getDescricao());
+            jtLocal.setText(lista.get(linha).getLocal());
+            jtAutor.setText(lista.get(linha).getAutor());
+            jtAno.setText(""+lista.get(linha).getAno());
+            for(int i=0;i<listaCategorias.size();i++)
+                if(listaCategorias.get(i).getId()==lista.get(linha).getCategoria().getId())
+                    jcbCategoria.setSelectedIndex(i);
+            for(int i=0;i<listaTipos.size();i++)
+                if(listaTipos.get(i).getId()==lista.get(linha).getTipo().getId())
+                    jcbTipo.setSelectedIndex(i);
+
+ 
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro: "+e.getMessage());
+        }
+    }//GEN-LAST:event_jtbDadosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
